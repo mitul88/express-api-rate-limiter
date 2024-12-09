@@ -1,0 +1,15 @@
+{
+  "name": "rate-limiter",
+  "version": "1.0.0",
+  "description": "This is a rate limiter application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "author": "Shahed Rahman",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
