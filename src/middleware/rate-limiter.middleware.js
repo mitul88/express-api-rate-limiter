@@ -11,7 +11,6 @@ module.exports.rateLimiterMiddleware = {
         maxNumOfRequest,
         tokenRefillInterval
       );
-      // console.log("allowed", allowed);
       if (allowed) {
         next();
       } else {
