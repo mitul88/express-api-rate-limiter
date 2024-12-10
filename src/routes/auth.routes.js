@@ -5,6 +5,8 @@ const {
 
 const router = require("express").Router();
 
-router.route("/").get([rateLimiterMiddleware.tokenBucketLimiter], createUser);
+router
+  .route("/create")
+  .get([rateLimiterMiddleware.tokenBucketLimiter], createUser);
 
 module.exports = router;

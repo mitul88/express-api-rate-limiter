@@ -1,4 +1,4 @@
 const userRouter = require("./auth.routes");
 module.exports = (app) => {
-  app.use("/api/create", userRouter);
+  app.use("/api", userRouter);
 };

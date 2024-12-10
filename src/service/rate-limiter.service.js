@@ -6,7 +6,7 @@ const {
 
 module.exports.rateLimiterService = {
   tokenBucket: async (key, maxAmount, refillTime) => {
-    // data structure = key ={"tokens": 2, "ts/lastUpdated": 14348622}
+    // redis cache data structure = key ={"tokens": 2, "ts/lastUpdated": 14348622}
     try {
       let bucket = await getObjValue(key);
       if (!bucket) {
@@ -35,7 +35,6 @@ module.exports.rateLimiterService = {
       // decrement request/token count by 1
       let modifiedBucket = await getObjValue(key);
       if (maxAmount - modifiedBucket.tokens == 0) {
-        console.log("first token");
         let currentTimestamp = Date.now();
         await setObjPropValue(key, "ts", currentTimestamp);
       }
@@ -48,5 +47,7 @@ module.exports.rateLimiterService = {
       console.log(err);
     }
   },
-  // end of token bucket
+
+  // start of leaky bucket rate limiter
+  leakyBucket: async () => {},
 };
