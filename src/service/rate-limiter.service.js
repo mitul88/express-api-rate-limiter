@@ -2,10 +2,11 @@ const {
   getObjValue,
   setObjValue,
   setObjPropValue,
+  expireValue,
 } = require("./redis.service");
 
 module.exports.rateLimiterService = {
-  tokenBucket: async (key, maxAmount, refillTime) => {
+  tokenBucket: async (key, maxAmount, refillTime, expiryInSeconds) => {
     // redis cache data structure = key ={"tokens": 2, "ts/lastUpdated": 14348622}
     try {
       let bucket = await getObjValue(key);
@@ -16,6 +17,7 @@ module.exports.rateLimiterService = {
         };
         // create bucket
         await setObjValue(key, value);
+        await expireValue(key, expiryInSeconds);
       }
       // check if time stored in cache elapsed or not
       if (Date.now() - parseInt(bucket.ts) >= refillTime) {

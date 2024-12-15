@@ -25,3 +25,7 @@ module.exports.setObjValue = async (key, value) => {
 module.exports.setObjPropValue = async (key, prop, val) => {
   return client.hSet(key, prop, val);
 };
+
+module.exports.expireValue = async (key, timestamp) => {
+  return client.expire(key, timestamp);
+};
