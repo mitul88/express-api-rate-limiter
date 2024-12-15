@@ -1,3 +1,4 @@
+const { CACHE_CONFIG } = require("../config/cache.config");
 const { RATE_LIMITER_CONFIG } = require("../config/rate-limiter.config");
 const { rateLimiterService } = require("../service/rate-limiter.service");
 
@@ -6,7 +7,7 @@ module.exports.rateLimiterMiddleware = {
     const clientIp = req.socket.remoteAddress;
     const maxNumOfRequest = RATE_LIMITER_CONFIG.MAX_REQUEST;
     const tokenRefillInterval = RATE_LIMITER_CONFIG.REFILL_INTERVAL;
-    const cacheExpiry = RATE_LIMITER_CONFIG.EXPIRE_IN_SECOND;
+    const cacheExpiry = CACHE_CONFIG.EXPIRE_IN_SECOND;
     try {
       let allowed = await rateLimiterService.tokenBucket(
         clientIp,

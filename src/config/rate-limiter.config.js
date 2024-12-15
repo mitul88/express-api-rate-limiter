@@ -1,5 +1,4 @@
 module.exports.RATE_LIMITER_CONFIG = {
   REFILL_INTERVAL: 1000 * 60,
   MAX_REQUEST: 3,
-  EXPIRE_IN_SECOND: 864000, // 1 day
 };
